@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { FilterForm } from 'components/Filter/Filter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { selectIsLoading, selectContacts, selectFilter } from 'redux/selectors';
-import * as phonebookOperations from 'redux/phonebook/contacts/operations';
+import { fetchPhonebook } from 'redux/phonebook/contacts/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export const App = () => {
   const [filteredContacts, setFilteredContacts] = useState();
 
   useEffect(() => {
-    dispatch(phonebookOperations.fetchPhonebook());
+    dispatch(fetchPhonebook());
   }, [dispatch]);
 
   useEffect(() => {
