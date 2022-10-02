@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from 'components/Common/Box.styled';
 import { List, ListItem, Name, Number, Button } from 'components/ListOfContacts/ListOfContacts.styled';
-import { deleteContact } from 'redux/slicePhonebook';
+import { deleteContact } from 'redux/phonebook/contacts/operations';
 import { useDispatch } from 'react-redux';
 
 export const ListOfContacts = ({ contacts }) => {

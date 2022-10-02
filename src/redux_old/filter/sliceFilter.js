@@ -1,5 +1,5 @@
 const { createSlice } = require('@reduxjs/toolkit');
-const { initialFilter } = require('./constants');
+const { initialFilter } = require('../constants');
 
 const filtersSlice = createSlice({
   name: 'filter',

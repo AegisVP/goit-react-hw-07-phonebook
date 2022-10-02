@@ -3,10 +3,11 @@ import { Box } from 'components/Common/Box.styled';
 import { Button, Label, InputField } from 'components/Filter/Filter.styled';
 // import { PropTypes } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchFilter } from 'redux/sliceFilter';
+import { searchFilter } from 'redux/phonebook/filter/slice';
+import { selectFilter } from 'redux/selectors';
 
 export const FilterForm = () => {
-  const filter = useSelector(store => store.contacts?.filter);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
   return (

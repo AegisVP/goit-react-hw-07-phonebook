@@ -1,16 +1,25 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SubmitButton, Label, InputField } from './ContactForm.styled';
 import { Box } from 'components/Common/Box.styled';
-import { addContact } from 'redux/slicePhonebook';
-import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/phonebook/contacts/operations';
+import { showAlert } from 'services/showAlert';
+import { selectContacts } from 'redux/selectors';
 
-export const ContactForm = ({ editId, editName, editNumber, onSubmit, onResetForm }) => {
+export const ContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const contactSubmitHandler = e => {
     e.preventDefault();
-    
+
     const { name, number } = e.target.elements;
+    const isNameInContacts = contacts.some(({ name: pName }) => pName.toLocaleLowerCase() === name.value.trim().toLocaleLowerCase());
+
+    if (isNameInContacts) {
+      showAlert('This name already exists in the list!');
+      return;
+    }
 
     dispatch(addContact({ name: name.value, number: number.value }));
     e.currentTarget.reset();
