@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { Box } from 'components/Common/Box.styled';
 import { Button, Label, InputField } from 'components/Filter/Filter.styled';
-// import { PropTypes } from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchFilter } from 'redux/phonebook/filter/slice';
 import { selectFilter } from 'redux/selectors';
@@ -41,9 +40,3 @@ export const FilterForm = () => {
     </Box>
   );
 };
-
-// FilterForm.propTypes = {
-//   onChange: PropTypes.func.isRequired,
-//   filterValue: PropTypes.string,
-//   onClear: PropTypes.func.isRequired,
-// };
