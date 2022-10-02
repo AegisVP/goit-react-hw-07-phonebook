@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { List } from 'components/ListOfContacts/ListOfContacts.styled';
 import { ContactItem } from 'components/ContactItem/ContactItem';
-import { useFetchPhonebookQuery } from 'services/contactsAPI_RTKQ';
+import { useFetchPhonebookQuery } from 'services/contactsAPI';
 import { selectFilter } from 'redux/selectors';
 
 export const ListOfContacts = () => {

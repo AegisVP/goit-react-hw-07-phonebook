@@ -1,5 +1,5 @@
 import { Box } from 'components/Common/Box.styled';
-import { useDeleteContactMutation } from 'services/contactsAPI_RTKQ';
+import { useDeleteContactMutation } from 'services/contactsAPI';
 import { Button, ListItem, Name, Number } from './ContactItem.styled';
 
 export const ContactItem = ({ contact }) => {

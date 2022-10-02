@@ -2,7 +2,7 @@ import React from 'react';
 import { SubmitButton, Label, InputField } from './ContactForm.styled';
 import { Box } from 'components/Common/Box.styled';
 import { showAlert } from 'services/showAlert';
-import { useAddContactMutation, useFetchPhonebookQuery } from 'services/contactsAPI_RTKQ';
+import { useAddContactMutation, useFetchPhonebookQuery } from 'services/contactsAPI';
 
 export const ContactForm = () => {
   const { data: contacts = [] } = useFetchPhonebookQuery();
