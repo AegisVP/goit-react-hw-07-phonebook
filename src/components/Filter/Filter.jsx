@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { Box } from 'components/Common/Box.styled';
 import { Button, Label, InputField } from 'components/Filter/Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchFilter } from 'redux/phonebook/filter/slice';
+import { searchFilter } from 'redux/filterSlice';
 import { selectFilter } from 'redux/selectors';
 
 export const FilterForm = () => {

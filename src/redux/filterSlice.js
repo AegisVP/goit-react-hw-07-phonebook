@@ -1,7 +1,7 @@
 const { createSlice } = require('@reduxjs/toolkit');
-const { initialFilter } = require('../constants');
+const { initialFilter } = require('redux/constants');
 
-const filtersSlice = createSlice({
+const filterSlice = createSlice({
   name: 'filter',
   initialState: initialFilter,
   reducers: {
@@ -11,5 +11,5 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { searchFilter } = filtersSlice.actions;
-export const filtersReducer = filtersSlice.reducer;
+export const { searchFilter } = filterSlice.actions;
+export const filterReducer = filterSlice.reducer;

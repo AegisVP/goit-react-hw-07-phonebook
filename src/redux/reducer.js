@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { phonebookReducer } from "./phonebook/contacts/reducers";
-import { filtersReducer } from "./phonebook/filter/slice";
+import { filtersReducer } from "./filterSlice";
 
 const contactsReducer = combineReducers({
   items: phonebookReducer,

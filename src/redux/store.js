@@ -1,12 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { contactsAPI } from 'services/contactsAPI_RTKQ';
-import contactsReducer from './phonebook/contacts/reducers';
-import { filterReducer } from './phonebook/filter/slice';
+import { filterReducer } from './filterSlice';
 
 export const store = configureStore({
   reducer: {
-    contacts: contactsReducer,
     [contactsAPI.reducerPath]: contactsAPI.reducer,
     filter: filterReducer,
   },
