@@ -6,10 +6,10 @@ import { useFetchPhonebookQuery } from 'services/contactsAPI';
 import { selectFilter } from 'redux/selectors';
 
 export const ListOfContacts = () => {
-  const { data = [], isLoading } = useFetchPhonebookQuery();
+  const { allContacts = [], isLoading } = useFetchPhonebookQuery();
   const filter = useSelector(selectFilter);
 
-  const filteredContacts = [...data]
+  const filteredContacts = [...allContacts]
     .filter(contact => contact.name.toLowerCase().indexOf(filter.search.trim().toLowerCase()) > -1)
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -17,7 +17,7 @@ export const ListOfContacts = () => {
     'Please wait, Loading...'
   ) : (
     <List>
-      {data.length > 0
+      {allContacts.length > 0
         ? filteredContacts.length > 0
           ? filteredContacts.map(contact => <ContactItem contact={contact} key={contact.id} />)
           : 'No matches found'
