@@ -1,21 +1,26 @@
-import { Box } from "components/Common/Box.styled";
-import { useDispatch } from "react-redux"
-import { deleteContact } from "redux/phonebook/contacts/operations";
-import { Button, ListItem, Name, Number } from "./ContactItem.styled";
-
+import { Box } from 'components/Common/Box.styled';
+import { useDeleteContactMutation } from 'services/contactsAPI_RTKQ';
+import { Button, ListItem, Name, Number } from './ContactItem.styled';
 
 export const ContactItem = ({ contact }) => {
-  const dispatch = useDispatch();
+  const [deleteContact, { isSuccess, isLoading, isError }] = useDeleteContactMutation();
 
-  return (
-    <ListItem key={contact.id}>
-      <Box display="flex">
-        <Name>{contact.name}</Name>
-        <Number className="number">{contact.number}</Number>
-      </Box>
-      <Box>
-        <Button onClick={() => dispatch(deleteContact(contact.id))}>❌</Button>
-      </Box>
-    </ListItem>
-  );
-}
+  const onDeleteContact = id => {
+    deleteContact(id);
+  };
+
+  if (!isSuccess)
+    return (
+      <ListItem key={contact.id}>
+        <Box display="flex">
+          <Name>{contact.name}</Name>
+          <Number className="number">{contact.number}</Number>
+        </Box>
+        <Box>
+          <Button onClick={() => onDeleteContact(contact.id)} disabled={isLoading}>
+            {isError ? '⛔' : isLoading ? '🛠' : '🗑'}
+          </Button>
+        </Box>
+      </ListItem>
+    );
+};

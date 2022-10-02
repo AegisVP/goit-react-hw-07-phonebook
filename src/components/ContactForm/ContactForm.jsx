@@ -1,27 +1,25 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { SubmitButton, Label, InputField } from './ContactForm.styled';
 import { Box } from 'components/Common/Box.styled';
-import { addContact } from 'redux/phonebook/contacts/operations';
 import { showAlert } from 'services/showAlert';
-import { selectContacts } from 'redux/selectors';
+import { useAddContactMutation, useFetchPhonebookQuery } from 'services/contactsAPI_RTKQ';
 
 export const ContactForm = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const { data: contacts = [] } = useFetchPhonebookQuery();
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const contactSubmitHandler = e => {
     e.preventDefault();
 
     const { name, number } = e.target.elements;
-    const isNameInContacts = contacts.some(({ name: pName }) => pName.toLocaleLowerCase() === name.value.trim().toLocaleLowerCase());
+    const isNameInContacts = contacts.some(contact => contact.name.toLocaleLowerCase() === name.value.trim().toLocaleLowerCase());
 
     if (isNameInContacts) {
       showAlert('This name already exists in the list!');
       return;
     }
 
-    dispatch(addContact({ name: name.value, number: number.value }));
+    addContact({ name: name.value, number: number.value });
     e.currentTarget.reset();
   };
 
@@ -41,7 +39,9 @@ export const ContactForm = () => {
           required
         />
       </Box>
-      <SubmitButton type="submit">Add user</SubmitButton>
+      <SubmitButton type="submit" disabled={isLoading}>
+        {isLoading ? 'Writing... ✍️' : 'Add user'}
+      </SubmitButton>
     </form>
   );
 };
