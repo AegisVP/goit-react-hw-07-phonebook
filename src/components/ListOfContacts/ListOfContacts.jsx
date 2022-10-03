@@ -6,7 +6,7 @@ import { useFetchPhonebookQuery } from 'services/contactsAPI';
 import { selectFilter } from 'redux/selectors';
 
 export const ListOfContacts = () => {
-  const { allContacts = [], isLoading } = useFetchPhonebookQuery();
+  const { data: allContacts = [], isLoading } = useFetchPhonebookQuery();
   const filter = useSelector(selectFilter);
 
   const filteredContacts = [...allContacts]
